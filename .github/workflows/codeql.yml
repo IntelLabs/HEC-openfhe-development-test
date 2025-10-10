@@ -86,13 +86,18 @@ jobs:
     # to build your code.
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
-    - if: matrix.build-mode == 'manual'
+    - name: CMake Configure
       shell: bash
       run: |
         mkdir build
-        cd build
-        cmake ..
-        
+        cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+          -DCMAKE_C_LINK_EXECUTABLE="/bin/true" \
+          -DCMAKE_CXX_LINK_EXECUTABLE="/bin/true"
+
+    - name: Build (compile only, no linking)
+      run: |
+        cmake --build build -j$(nproc)    
+      
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
       with:
