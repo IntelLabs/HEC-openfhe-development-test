@@ -695,9 +695,9 @@ std::vector<std::vector<std::vector<std::complex<double>>>> CoeffDecodingCollaps
     for (int32_t s = 0; s < rowsCollapse; s++) {
         for (int32_t l = 0; l < layersCollapse; l++) {
             if (l == 0) {
-                coeff[s][0] = coeff1[s * layersCollapse];
-                coeff[s][1] = coeff1[std::log2(slots) + s * layersCollapse];
-                coeff[s][2] = coeff1[2 * std::log2(slots) + s * layersCollapse];
+                coeff[s][0] = coeff1[size_t(s) * layersCollapse];
+                coeff[s][1] = coeff1[size_t(std::log2(slots)) + size_t(s) * layersCollapse];
+                coeff[s][2] = coeff1[size_t(2 * std::log2(slots)) + size_t(s) * layersCollapse];
             }
             else {
                 std::vector<std::vector<std::complex<double>>> temp = coeff[s];
