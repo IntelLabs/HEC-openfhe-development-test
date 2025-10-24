@@ -572,10 +572,10 @@ void SWITCHCKKSRNS::FitToNativeVector(uint32_t ringDim, const std::vector<int64_
     for (usint i = 0; i < vec.size(); i++) {
         NativeInteger n(vec[i]);
         if (n > bigValueHf) {
-            (*nativeVec)[gap * i] = n.ModSub(diff, modulus);
+            (*nativeVec)[static_cast<size_t>(gap) * static_cast<size_t>(i)] = n.ModSub(diff, modulus);
         }
         else {
-            (*nativeVec)[gap * i] = n.Mod(modulus);
+            (*nativeVec)[static_cast<size_t>(gap) * static_cast<size_t>(i)] = n.Mod(modulus);
         }
     }
 }
