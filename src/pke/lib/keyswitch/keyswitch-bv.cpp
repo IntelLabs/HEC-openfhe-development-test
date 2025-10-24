@@ -230,8 +230,8 @@ EvalKey<DCRTPoly> KeySwitchBV::KeySwitchGenInternal(const PrivateKey<DCRTPoly> o
     auto elementParams    = newp0.GetParams();
 
     if (digitSize > 0) {
-        av.reserve(sOld.GetNumOfElements() * digitSize);
-        bv.reserve(sOld.GetNumOfElements() * digitSize);
+        av.reserve(static_cast<std::vector<DCRTPoly>::size_type>(sOld.GetNumOfElements()) * digitSize);
+        bv.reserve(static_cast<std::vector<DCRTPoly>::size_type>(sOld.GetNumOfElements()) * digitSize);
         for (usint i = 0; i < sOld.GetNumOfElements(); i++) {
             for (auto&& sOldDecomposed : sOld.GetElementAtIndex(i).PowersOfBase(digitSize)) {
                 DCRTPoly filtered(elementParams, Format::EVALUATION, true);
