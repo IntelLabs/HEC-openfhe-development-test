@@ -1605,7 +1605,7 @@ Ciphertext<DCRTPoly> FHECKKSRNS::EvalLinearTransform(const std::vector<ConstPlai
     DCRTPoly first;
 
     for (uint32_t j = 0; j < gStep; j++) {
-        Ciphertext<DCRTPoly> inner = EvalMultExt(cc->KeySwitchExt(ct, true), A[bStep * j]);
+        Ciphertext<DCRTPoly> inner = EvalMultExt(cc->KeySwitchExt(ct, true), A[static_cast<size_t>(bStep) * j]);
         for (uint32_t i = 1; i < bStep; i++) {
             if (bStep * j + i < slots) {
                 EvalAddExtInPlace(inner, EvalMultExt(fastRotation[i - 1], A[bStep * j + i]));
