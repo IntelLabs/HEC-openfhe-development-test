@@ -339,9 +339,7 @@ Plaintext SWITCHCKKSRNS::MakeAuxPlaintext(const CryptoContextImpl<DCRTPoly>& cc,
                 logc = logci;
         }
     }
-    if (logc < 0) {
-        OPENFHE_THROW("Too small scaling factor");
-    }
+// (Removed dead check: logc < 0 is always false)
     int32_t logValid    = (logc <= MAX_BITS_IN_WORD) ? logc : MAX_BITS_IN_WORD;
     int32_t logApprox   = logc - logValid;
     double approxFactor = pow(2, logApprox);
