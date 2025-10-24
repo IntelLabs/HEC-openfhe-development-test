@@ -352,7 +352,7 @@ std::shared_ptr<std::vector<DCRTPoly>> KeySwitchHYBRID::EvalKeySwitchPrecomputeC
         if (part == numPartQl - 1) {
             auto paramsPartQ = cryptoParams->GetParamsPartQ(part);
 
-            uint32_t sizePartQl = sizeQl - alpha * part;
+            uint32_t sizePartQl = sizeQl - static_cast<size_t>(alpha) * part;
 
             std::vector<NativeInteger> moduli(sizePartQl);
             std::vector<NativeInteger> roots(sizePartQl);
